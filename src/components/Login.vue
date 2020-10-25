@@ -15,21 +15,18 @@
 </template>
 
 <script>
-  import { onMounted, ref } from 'vue'
-  import { useStore } from 'vuex'
+  import {mapState, mapGetters} from 'vuex'
 
-  const setup = () => {
-    const store = useStore()
-    const login = ref(false)
 
-    onMounted(() => {})
-    return {
-      store,
-      login
-    }
-  }
   export default {
-    setup,
+      computed: {
+          ...mapState({
+              userStore: 'user'
+          }),
+          ...mapGetters({
+              isLogin: 'isLogin'
+          })
+      }
   }
 </script>
 

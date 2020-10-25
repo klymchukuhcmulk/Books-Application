@@ -1,27 +1,27 @@
 <template>
   <div>
-    <router-link v-if="isLogin" to="/">Home</router-link>
+    <router-link v-if="userIsLogin" to="/">Home</router-link>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import user from '../src/store/user'
 
 
 export default {
 
   computed: {
-    ...mapActions({
-      userState: 'user'
-    })
+    ...mapGetters({
+      userIsLogin: 'isLogin'
+    }),
+
   },
   created () {
     if (!this.$store.state.user) {
       this.$store.registerModule('user', user)
     }
-    console.log(this.$store.state.user, this.userState)
   },
   beforeDestroy () {
     if (this.$store.state.user) {
