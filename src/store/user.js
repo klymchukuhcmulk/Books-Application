@@ -1,10 +1,10 @@
 export default {
   namespace: true,
   state: {
-    user: null
+    user: null,
   },
   getters: {
-    user (state) {
+    isLogin (state) {
       return state.user
     }
   }
