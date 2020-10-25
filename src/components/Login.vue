@@ -5,10 +5,13 @@
                 <h1 class="app-name login__name">Bookshelf</h1>
             </div>
             <div class="login__body">
-                <img v-if="!login" class="login__icon" src="../assets/icon.png" alt="" />
+                <transition name="login__body_fade" mode="out-in">
+                    <img v-if="!login" class="login__body__icon" src="../assets/main/icon.png" alt="" />
+                    <div v-else-if="login" class="login__body__form"></div>
+                </transition>
             </div>
             <div class="login__footer">
-                <button class="btn login__btn" @click="login = true">Get started</button>
+                <button class="btn login__btn" @click="login = true">{{ login ? 'Sign up' : 'Get started' }}</button>
             </div>
         </div>
     </div>
@@ -46,7 +49,7 @@
         display: flex;
         justify-content: center;
         box-shadow: inset 0 0 550px #000000;
-        background-image: url("../assets/login_background.jpg");
+        background-image: url("../assets/login/login_background.jpg");
         &__wrapper {
             display: flex;
             flex-direction: column;
@@ -54,8 +57,29 @@
             align-items: center;
             margin: 10% 0;
         }
-        &__icon {
-            width: 200px;
+        &__header {
+            display: flex;
+            width: 100%;
+        }
+        &__body {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            &__form {
+                width: 100%;
+                height: 200px;
+                background: azure;
+            }
+            &__icon {
+                width: 200px;
+            }
+            &_fade-enter-active-from, &_fade-leave-active {
+                transition: opacity .3s ease;
+            }
+            &_fade-enter-from, &_fade-leave-to
+                /* .component-fade-leave-active до версии 2.1.8 */ {
+                opacity: 0;
+            }
         }
         &__footer {
             width: 100%;
@@ -63,10 +87,6 @@
         &__btn {
             margin: 0 auto;
             display: block;
-        }
-        &__header {
-            display: flex;
-            width: 100%;
         }
         &__name {
             margin: 0 auto;
