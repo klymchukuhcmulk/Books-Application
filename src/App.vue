@@ -1,20 +1,18 @@
 <template>
   <div>
-    <router-link v-if="store.getters.user" to="/">Home</router-link>
+    <router-link v-if="$store.getters.user" to="/">Home</router-link>
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import { useStore } from 'vuex'
-const setup = () => {
-  const store = useStore()
-  return {
-    store,
-  }
-}
+//import { mapState } from 'vuex'
+
 export default {
-  setup
+
+  mounted () {
+    console.log('store', this.$store)
+  }
 }
 </script>
 

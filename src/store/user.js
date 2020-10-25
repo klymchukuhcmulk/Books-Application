@@ -1,6 +1,5 @@
-import { createStore } from 'vuex'
-
-export default createStore({
+export default {
+  namespace: true,
   state: {
     user: null
   },
@@ -9,4 +8,4 @@ export default createStore({
       return state.user
     }
   }
-})
+}
